@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "day1": "ts-node days/1.ts",
+    "day2": "ts-node days/2.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mike Kitzman",
