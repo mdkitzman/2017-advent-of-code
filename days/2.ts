@@ -1,3 +1,4 @@
+import { sum } from './util';
 /*
 --- Day 2: Corruption Checksum ---
 
@@ -82,7 +83,6 @@ const findRowDivisors = (rowData:number[]): number[] => rowData
 
 const subtractMinMax = ([min, max]: number[]): number => Math.abs(max - min);
 const divide = ([val1, val2]: number[]):number => val1 / val2;
-const sum = (prev: number, cur: number) => prev + cur;
 
 const calcChecksum = (data: Spreadsheet): number => data
   .map(findRowMinMax)
