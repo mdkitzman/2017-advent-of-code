@@ -1,4 +1,4 @@
-import { sum } from './util';
+import { sum } from '../util';
 
 const part1 = () => {
   const east  = (radius:number):number => Math.pow(((radius * 2) - 1), 2) + radius;

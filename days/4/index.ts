@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs';
-import { sum } from './util';
+import { sum } from '../util';
 
 const part1 = (phrases:string[]) => {
 
@@ -33,7 +33,7 @@ const part2 = (phrases:string[]) => {
 
 (async () => {
 
-  const allPhrases = await fs.readFile('./days/4.input', { encoding: 'utf-8'});
+  const allPhrases = await fs.readFile('./days/4/input', { encoding: 'utf-8'});
   const phrases = allPhrases.split('\n');
 
   part1(phrases);
