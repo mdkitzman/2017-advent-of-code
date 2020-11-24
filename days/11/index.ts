@@ -5,14 +5,18 @@ enum HexDirection {
   se, ne, n, nw, sw, s
 }
 
-const doubleheight_directions = [
-  [+1, +1], [+1, -1], [ 0, -2], 
-  [-1, -1], [-1, +1], [ 0, +2], 
+const doubleheight_directions:CartesianCoord[] = [
+  { col:+1, row:+1 }, { col:+1, row:-1 }, { col:0, row: -2 }, 
+  { col:-1, row:-1 }, { col:-1, row:+1 }, { col:0, row: +2 }, 
 ]
 
 interface CartesianCoord {
   row:number,
   col:number
+}
+
+const addPoints = (a: CartesianCoord, b: CartesianCoord):CartesianCoord => {
+  return {col: a.col + b.col, row: a.row + b.row };
 }
 
 const cartesianDistance = (a:CartesianCoord, b:CartesianCoord):number =>{
@@ -28,8 +32,7 @@ const part1 = (input:string) => {
   const start:CartesianCoord = {row:0, col:0};
   const end:CartesianCoord = path
                               .map(dir => doubleheight_directions[dir])
-                              .map(neighbor => ({col: neighbor[0], row: neighbor[1]}))
-                              .reduce((prev, cur) => ({col:prev.col+cur.col, row:prev.row + cur.row}), start);
+                              .reduce(addPoints, start);
   
   console.log(`Part 1 : End is ${JSON.stringify(end)} with a distance of ${cartesianDistance(start, end)}`);
 };
@@ -39,13 +42,11 @@ const part2 = (input:string) => {
   
   let maxDistance = 0;
   const start:CartesianCoord = {row:0, col:0};
-  const curPos:CartesianCoord = {row:0, col:0}
+  let curPos:CartesianCoord = {row:0, col:0}
   path
     .map(dir => doubleheight_directions[dir])
-    .map(neighbor => ({col: neighbor[0], row: neighbor[1]}))
     .forEach(neighbor => {
-      curPos.row += neighbor.row;
-      curPos.col += neighbor.col;
+      curPos = addPoints(curPos, neighbor);
       const dist = cartesianDistance(start, curPos);
       maxDistance = Math.max(maxDistance, dist);
     });
@@ -56,6 +57,6 @@ const part2 = (input:string) => {
 (async () => {
   const allInput = await fs.readFile('./days/11/input', { encoding: 'utf-8'});
     
-  part1(allInput);
-  part2(allInput);
+  part1(allInput); // distance of 685
+  part2(allInput); // max distance of 1457
 })();
