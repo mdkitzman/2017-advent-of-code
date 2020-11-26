@@ -118,5 +118,5 @@ const part2 = (input:string) => {
   const test = await fs.readFile('./days/13/test', { encoding: 'utf-8'});
 
   part1(allInput); // cost of 1728
-  part2(allInput);
+  part2(allInput); // delay by 3,946,838 picoseconds
 })();
