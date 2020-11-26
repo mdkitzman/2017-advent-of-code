@@ -10,6 +10,6 @@ day=$1
 
 mkdir days/$day
 touch days/$day/index.ts
-touch days/$day/README.mk
+touch days/$day/README.md
 touch days/$day/input
 touch days/$day/test
