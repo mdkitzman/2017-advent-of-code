@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
 import Graph from 'graphology';
 import {bfsFromNode} from 'graphology-traversal'
+import { subGraphCount } from '../util';
 
 const getGraph = (input:string):Graph => {
   const graph = new Graph();
@@ -28,20 +29,9 @@ const part1 = (input:string) => {
 const part2 = (input:string) => {
   const graph = getGraph(input);
 
-  const visitedNodes = [...Array(graph.order).keys()].map(val => String(val));
+  const count = subGraphCount(graph);
 
-  let counter = 0;
-  while (visitedNodes.length > 0) {
-    const start:string = visitedNodes.shift()!;
-    bfsFromNode(graph, start, (node) => {
-      const index = visitedNodes.indexOf(node as string);
-      if(index >= 0)
-        visitedNodes.splice(index, 1);
-    });
-    counter++;
-  }
-
-  console.log(`Part 2 : Therea are ${counter} graphs found`)
+  console.log(`Part 2 : Therea are ${count} graphs found`)
 }
 
 (async () => {
